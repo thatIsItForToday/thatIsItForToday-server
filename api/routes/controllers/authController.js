@@ -54,5 +54,25 @@ const postLogin = async (req, res, next) => {
   }
 };
 
+const getAutoLogin = async (req, res, next) => {
+  const { decodedEmail } = res.locals;
+
+  try {
+    const user = await userService.getUser(decodedEmail);
+
+    res.json({
+      user,
+    });
+  } catch {
+    res.json({
+      error: {
+        message: ERROR_MESSAGE.SERVER_ERROR,
+        code: 500,
+      },
+    });
+  }
+};
+
 exports.postSignup = postSignup;
 exports.postLogin = postLogin;
+exports.getAutoLogin = getAutoLogin;
