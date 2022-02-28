@@ -1,4 +1,10 @@
-const User = require("../models/User");
+const User = require("../../models/User");
+
+const getUser = async email => {
+  const user = await User.findOne({ email }).lean().exec();
+
+  return user;
+};
 
 const createUser = async userInfo => {
   const { email, profileUrl, nickname } = userInfo;
@@ -12,4 +18,5 @@ const createUser = async userInfo => {
   return newUser;
 };
 
+exports.getUser = getUser;
 exports.createUser = createUser;

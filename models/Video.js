@@ -8,10 +8,12 @@ const videoSchema = new mongoose.Schema({
   },
   videoUrl: {
     type: String,
+    required: true,
     validate: [isURL, "Must be a valid URL."],
   },
   gifUrl: {
     type: String,
+    required: true,
     validate: [isURL, "Must be a valid URL."],
   },
 });
