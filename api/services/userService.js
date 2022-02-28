@@ -18,5 +18,16 @@ const createUser = async userInfo => {
   return newUser;
 };
 
+const updateRefreshToken = async (email, token) => {
+  if (!token) {
+    await User.updateOne({ email }, { refreshToken: "" }).exec();
+
+    return;
+  }
+
+  await User.updateOne({ email }, { refreshToken: token }).exec();
+};
+
 exports.getUser = getUser;
 exports.createUser = createUser;
+exports.updateRefreshToken = updateRefreshToken;
