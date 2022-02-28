@@ -94,7 +94,26 @@ const postToken = async (req, res, next) => {
   }
 };
 
+const putLogout = async (req, res, next) => {
+  const { email } = req.body;
+  try {
+    await userService.updateRefreshToken(email);
+
+    res.json({
+      result: "ok",
+    });
+  } catch {
+    res.json({
+      error: {
+        message: ERROR_MESSAGE.SERVER_ERROR,
+        code: 500,
+      },
+    });
+  }
+};
+
 exports.postSignup = postSignup;
 exports.postLogin = postLogin;
 exports.getAutoLogin = getAutoLogin;
 exports.postToken = postToken;
+exports.putLogout = putLogout;

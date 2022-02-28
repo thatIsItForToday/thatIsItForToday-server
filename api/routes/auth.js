@@ -7,6 +7,7 @@ const {
   postLogin,
   postSignup,
   postToken,
+  putLogout,
 } = require("./controllers/authController");
 
 const router = express.Router();
@@ -18,5 +19,7 @@ router.post("/login", validateUser, postLogin);
 router.post("/signup", postSignup);
 
 router.post("/token", validateUser, validateToken, postToken);
+
+router.put("/logout", putLogout);
 
 module.exports = router;
