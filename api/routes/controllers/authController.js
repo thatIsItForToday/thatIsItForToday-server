@@ -1,5 +1,5 @@
-const userService = require("../services/user");
-const { ERROR_MESSAGE } = require("../config/constants");
+const userService = require("../../services/userService");
+const { ERROR_MESSAGE } = require("../../../config/constants");
 
 const postSignup = async (req, res, next) => {
   const userInfo = req.body;

@@ -1,5 +1,5 @@
-const User = require("../models/User");
-const { ERROR_MESSAGE } = require("../config/constants");
+const User = require("../../models/User");
+const { ERROR_MESSAGE } = require("../../config/constants");
 
 const validateUser = async (req, res, next) => {
   const { email } = req.body;

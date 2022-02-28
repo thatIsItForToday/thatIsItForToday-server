@@ -7,9 +7,8 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const createError = require("http-errors");
 
-const indexRouter = require("./routes/index");
-const authRouter = require("./routes/auth");
-const usersRouter = require("./routes/users");
+const api = require("./api");
+const indexRouter = require("./api/routes/index");
 
 const app = express();
 require("./config/db");
@@ -25,8 +24,7 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/auth", authRouter);
-app.use("/users", usersRouter);
+app.use("/api", api);
 
 app.use((req, res, next) => {
   next(createError(404));
