@@ -1,11 +1,11 @@
-const User = require("../../models/User");
 const { ERROR_MESSAGE } = require("../../config/constants");
+const userService = require("../services/userService");
 
 const validateUser = async (req, res, next) => {
   const { email } = req.body;
 
   try {
-    const user = await User.findOne({ email }).exec();
+    const user = await userService.getUser(email);
 
     if (!user) {
       res.json({
