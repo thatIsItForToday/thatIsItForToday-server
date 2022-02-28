@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
@@ -6,9 +8,11 @@ const path = require("path");
 const createError = require("http-errors");
 
 const indexRouter = require("./routes/index");
+const authRouter = require("./routes/auth");
 const usersRouter = require("./routes/users");
 
 const app = express();
+require("./config/db");
 
 app.use(logger("dev"));
 app.use(cors());
@@ -21,6 +25,7 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
+app.use("/auth", authRouter);
 app.use("/users", usersRouter);
 
 app.use((req, res, next) => {
