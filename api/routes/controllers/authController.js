@@ -73,6 +73,28 @@ const getAutoLogin = async (req, res, next) => {
   }
 };
 
+const postToken = async (req, res, next) => {
+  const { email } = req.body;
+  const { user } = res.locals;
+
+  try {
+    const { newAccessToken } = await createToken(email);
+
+    res.json({
+      user,
+      accessToken: newAccessToken,
+    });
+  } catch {
+    res.json({
+      error: {
+        message: ERROR_MESSAGE.SERVER_ERROR,
+        code: 500,
+      },
+    });
+  }
+};
+
 exports.postSignup = postSignup;
 exports.postLogin = postLogin;
 exports.getAutoLogin = getAutoLogin;
+exports.postToken = postToken;
