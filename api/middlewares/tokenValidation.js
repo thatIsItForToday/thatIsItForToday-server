@@ -7,7 +7,7 @@ const validateToken = async (req, res, next) => {
 
   if (decodedEmail instanceof Error) {
     res.json({
-      isValidToken: false,
+      isInvalidToken: true,
     });
 
     return;

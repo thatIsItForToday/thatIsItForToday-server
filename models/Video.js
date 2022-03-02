@@ -6,12 +6,12 @@ const videoSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  videoUrl: {
+  videoURL: {
     type: String,
     required: true,
     validate: [isURL, "Must be a valid URL."],
   },
-  gifUrl: {
+  gifURL: {
     type: String,
     required: true,
     validate: [isURL, "Must be a valid URL."],
