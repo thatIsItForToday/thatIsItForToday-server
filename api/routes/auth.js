@@ -18,7 +18,7 @@ router.post("/login", validateUser, postLogin);
 
 router.post("/signup", postSignup);
 
-router.post("/token", validateUser, validateToken, postToken);
+router.post("/token", validateToken, postToken);
 
 router.put("/logout", putLogout);
 

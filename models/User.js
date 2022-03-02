@@ -8,12 +8,12 @@ const userSchema = new mongoose.Schema({
     unique: true,
     validate: [isEmail, "Must be a valid Email."],
   },
-  profileUrl: {
+  photoURL: {
     type: String,
     require: true,
     validate: [isURL, "Must be a valid URL."],
   },
-  nickname: {
+  displayName: {
     type: String,
     require: true,
   },
