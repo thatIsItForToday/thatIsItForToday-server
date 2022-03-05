@@ -38,7 +38,15 @@ const saveVideo = async (id, videoURL, gifURL) => {
   await User.updateOne({ _id: id }, { $push: { videos: newVideo.id } });
 };
 
+const deleteVideo = async (userId, videoId) => {
+  await Promise.all([
+    User.updateOne({ _id: userId }, { $pull: { videos: videoId } }),
+    Video.deleteOne({ _id: videoId }),
+  ]);
+};
+
 exports.getUser = getUser;
 exports.createUser = createUser;
 exports.updateRefreshToken = updateRefreshToken;
 exports.saveVideo = saveVideo;
+exports.deleteVideo = deleteVideo;
