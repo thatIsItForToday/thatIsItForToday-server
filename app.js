@@ -13,6 +13,13 @@ const indexRouter = require("./api/routes/index");
 const app = express();
 require("./config/db");
 
+app.use((req, res, next) => {
+  res.header("Cross-Origin-Resource-Policy", "cross-origin");
+  res.header("Cross-Origin-Embedder-Policy", "credentialless");
+  res.header("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  next();
+});
+
 app.use(logger("dev"));
 app.use(cors());
 app.use(express.json());
