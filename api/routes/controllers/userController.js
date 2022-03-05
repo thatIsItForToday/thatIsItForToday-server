@@ -1,5 +1,9 @@
 const { ERROR_MESSAGE } = require("../../../config/constants");
-const { saveVideo, deleteVideo } = require("../../services/userService");
+const {
+  saveVideo,
+  deleteVideo,
+  getVideos,
+} = require("../../services/userService");
 
 const postUserVideo = async (req, res, next) => {
   const { userId } = req.params;
@@ -10,6 +14,25 @@ const postUserVideo = async (req, res, next) => {
 
     res.json({
       result: "ok",
+    });
+  } catch {
+    res.json({
+      error: {
+        message: ERROR_MESSAGE.SERVER_ERROR,
+        code: 500,
+      },
+    });
+  }
+};
+
+const getUserVideos = async (req, res, next) => {
+  const { userId } = req.params;
+
+  try {
+    const videos = await getVideos(userId);
+
+    res.json({
+      videos,
     });
   } catch {
     res.json({
@@ -41,4 +64,5 @@ const deleteUserVideo = async (req, res, next) => {
 };
 
 exports.postUserVideo = postUserVideo;
+exports.getUserVideos = getUserVideos;
 exports.deleteUserVideo = deleteUserVideo;
