@@ -7,10 +7,10 @@ const {
 
 const postUserVideo = async (req, res, next) => {
   const { userId } = req.params;
-  const { videoURL, gifURL } = req.body;
+  const { videoURL, videoStreamingURL, gifURL } = req.body;
 
   try {
-    await saveVideo(userId, videoURL, gifURL);
+    await saveVideo(userId, videoURL, videoStreamingURL, gifURL);
 
     res.json({
       result: "ok",

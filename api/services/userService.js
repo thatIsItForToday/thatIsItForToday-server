@@ -29,9 +29,10 @@ const updateRefreshToken = async (email, token) => {
   await User.updateOne({ email }, { refreshToken: token }).exec();
 };
 
-const saveVideo = async (id, videoURL, gifURL) => {
+const saveVideo = async (id, videoURL, videoStreamingURL, gifURL) => {
   const newVideo = await Video.create({
     videoURL,
+    videoStreamingURL,
     gifURL,
   });
 
