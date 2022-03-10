@@ -49,6 +49,12 @@ const getVideos = async userId => {
   return videos;
 };
 
+const getVideo = async videoId => {
+  const video = await Video.findById(videoId).lean().exec();
+
+  return video;
+};
+
 const deleteVideo = async (userId, videoId) => {
   await Promise.all([
     User.updateOne({ _id: userId }, { $pull: { videos: videoId } }),
@@ -61,4 +67,5 @@ exports.createUser = createUser;
 exports.updateRefreshToken = updateRefreshToken;
 exports.saveVideo = saveVideo;
 exports.getVideos = getVideos;
+exports.getVideo = getVideo;
 exports.deleteVideo = deleteVideo;
