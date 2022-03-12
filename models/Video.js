@@ -21,6 +21,15 @@ const videoSchema = new mongoose.Schema({
     required: true,
     validate: [isURL, "Must be a valid URL."],
   },
+  thumbnailURL: {
+    type: String,
+    required: true,
+    validate: [isURL, "Must be a valid URL."],
+  },
+  runTime: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Video", videoSchema);

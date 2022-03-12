@@ -1,5 +1,4 @@
 const { ERROR_MESSAGE } = require("../../../config/constants");
-const Video = require("../../../models/Video");
 const {
   saveVideo,
   deleteVideo,
@@ -9,10 +8,18 @@ const {
 
 const postUserVideo = async (req, res, next) => {
   const { userId } = req.params;
-  const { videoURL, videoStreamingURL, gifURL } = req.body;
+  const { videoURL, videoStreamingURL, gifURL, thumbnailURL, runTime } =
+    req.body;
 
   try {
-    await saveVideo(userId, videoURL, videoStreamingURL, gifURL);
+    await saveVideo(
+      userId,
+      videoURL,
+      videoStreamingURL,
+      gifURL,
+      thumbnailURL,
+      runTime
+    );
 
     res.json({
       result: "ok",

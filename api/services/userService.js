@@ -29,14 +29,25 @@ const updateRefreshToken = async (email, token) => {
   await User.updateOne({ email }, { refreshToken: token }).exec();
 };
 
-const saveVideo = async (id, videoURL, videoStreamingURL, gifURL) => {
+const saveVideo = async (
+  userId,
+  videoURL,
+  videoStreamingURL,
+  gifURL,
+  thumbnailURL,
+  runTime
+) => {
   const newVideo = await Video.create({
     videoURL,
     videoStreamingURL,
     gifURL,
+    thumbnailURL,
+    runTime,
   });
 
-  await User.updateOne({ _id: id }, { $push: { videos: newVideo.id } });
+  console.log(newVideo);
+
+  await User.updateOne({ _id: userId }, { $push: { videos: newVideo._id } });
 };
 
 const getVideos = async userId => {
