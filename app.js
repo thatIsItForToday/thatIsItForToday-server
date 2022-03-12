@@ -14,12 +14,10 @@ const app = express();
 require("./config/db");
 
 app.use((req, res, next) => {
-  res.header("Cross-Origin-Embedder-Policy", "require-corp");
   res.header("Cross-Origin-Opener-Policy", "same-origin");
+  res.header("Cross-Origin-Embedder-Policy", "require-corp");
   res.header("Cross-Origin-Resource-Policy", "cross-origin");
 
-  // res.header("Cross-Origin-Embedder-Policy", "credentialless");
-  // res.header("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
   next();
 });
 
@@ -29,6 +27,7 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
