@@ -45,8 +45,6 @@ const saveVideo = async (
     runTime,
   });
 
-  console.log(newVideo);
-
   await User.updateOne({ _id: userId }, { $push: { videos: newVideo._id } });
 };
 

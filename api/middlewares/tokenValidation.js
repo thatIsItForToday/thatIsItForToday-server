@@ -1,4 +1,4 @@
-const { decodeToken } = require("../../utils/utils");
+const { decodeToken } = require("../../utils/tokenUtils");
 
 const validateToken = async (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];

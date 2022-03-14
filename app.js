@@ -8,18 +8,10 @@ const path = require("path");
 const createError = require("http-errors");
 
 const api = require("./api");
-const indexRouter = require("./api/routes/index");
+const firebaseGoogleLoginRouter = require("./api/routes/firebaseAuth");
 
 const app = express();
 require("./config/db");
-
-app.use((req, res, next) => {
-  res.header("Cross-Origin-Opener-Policy", "same-origin");
-  res.header("Cross-Origin-Embedder-Policy", "require-corp");
-  res.header("Cross-Origin-Resource-Policy", "cross-origin");
-
-  next();
-});
 
 app.use(logger("dev"));
 app.use(
@@ -32,11 +24,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
+app.use("/login", firebaseGoogleLoginRouter);
 app.use("/api", api);
 
 app.use((req, res, next) => {
