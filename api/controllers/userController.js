@@ -1,10 +1,10 @@
-const { ERROR_MESSAGE } = require("../../../config/constants");
+const { ERROR_MESSAGE } = require("../../config/constants");
 const {
   saveVideo,
   deleteVideo,
   getVideos,
   getVideo,
-} = require("../../services/userService");
+} = require("../services/userService");
 
 const postUserVideo = async (req, res, next) => {
   const { userId } = req.params;

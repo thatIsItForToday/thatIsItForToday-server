@@ -8,18 +8,14 @@ const {
   postSignup,
   postToken,
   putLogout,
-} = require("./controllers/authController");
+} = require("../controllers/authController");
 
 const router = express.Router();
 
 router.get("/login", validateToken, getAutoLogin);
-
 router.post("/login", validateUser, postLogin);
-
 router.post("/signup", postSignup);
-
 router.post("/token", validateToken, postToken);
-
 router.put("/logout", putLogout);
 
 module.exports = router;
