@@ -79,7 +79,7 @@ const deleteUserVideo = async (req, res, next) => {
     await deleteVideo(userId, videoId);
 
     res.json({
-      reuslt: "ok",
+      result: "ok",
     });
   } catch {
     res.json({
