@@ -31,7 +31,6 @@ const postSignup = async (req, res, next) => {
 };
 
 const postLogin = async (req, res, next) => {
-  console.log("로그인요청");
   const { email } = req.body;
   const { user } = res.locals;
 
@@ -77,7 +76,6 @@ const getAutoLogin = async (req, res, next) => {
 const postToken = async (req, res, next) => {
   const { decodedEmail: email } = res.locals;
 
-  console.log("토큰재발급요청받음");
   try {
     const { newAccessToken } = await createToken(email);
 

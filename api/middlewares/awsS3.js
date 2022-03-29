@@ -1,7 +1,7 @@
 const AWS = require("aws-sdk");
 
-const Video = require("../../models/Video");
 const { ERROR_MESSAGE } = require("../../config/constants");
+const Video = require("../../models/Video");
 
 AWS.config.update({
   accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID,
