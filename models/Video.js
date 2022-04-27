@@ -4,7 +4,7 @@ const { isURL } = require("validator");
 const videoSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
   videoURL: {
     type: String,
